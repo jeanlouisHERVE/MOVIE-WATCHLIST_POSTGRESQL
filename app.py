@@ -1,8 +1,12 @@
 #python modules
 import datetime
+import psycopg2
 
 #own modules
 import database
+
+url="postgres://bqphjzfr:zlsqoEegu9wBnpZVVU9ys6q-2VYjcZZe@kandula.db.elephantsql.com/bqphjzfr"
+connection = psycopg2.connect(url)
 
 menu = """Please select one of the following options:
 1) Add new movie.
@@ -80,3 +84,6 @@ while (user_input := input(menu)) != "8":
         prompt_seach_movies()
     else:
         print("Invalid input, please try again!")
+        
+        
+connection.close()

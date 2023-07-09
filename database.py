@@ -1,6 +1,5 @@
 #title, release_date, watched
 import datetime
-import sqlite3
 
 
 CREATE_MOVIES_TABLE = """CREATE TABLE IF NOT EXISTS movies (
