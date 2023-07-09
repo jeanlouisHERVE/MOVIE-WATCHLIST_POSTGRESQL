@@ -1,6 +1,11 @@
 #title, release_date, watched
+import os
 import datetime
+import psycopg2
 
+from dotenv import load_dotenv
+
+load_dotenv()
 
 CREATE_MOVIES_TABLE = """CREATE TABLE IF NOT EXISTS movies (
     id INTEGER PRIMARY KEY,
@@ -33,7 +38,7 @@ SEARCH_MOVIES = "SELECT * FROM movies WHERE title LIKE ?;"
 DELETE_MOVIE = "DELETE FROM movies WHERE title = ?;"
 CREATE_RELEASE_INDEX = "CREATE INDEX IF NOT EXISTS idx_movies_release ON movies(release_timestamp);"
 
-connection = sqlite3.connect("movie_data.db")
+connection = psycopg2.connect(os.environ["DATABASE_URL"])
 
 def create_table():
     with connection:
